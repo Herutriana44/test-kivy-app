@@ -2,14 +2,10 @@ name: CI
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  schedule:
-    - cron: '0 0 1,15 * *'
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - uses: actions/checkout@v2
@@ -37,7 +33,7 @@ jobs:
         id: buildozer
         with:
           command: buildozer android debug
-          buildozer_version: master
+          buildozer_version: stable
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
